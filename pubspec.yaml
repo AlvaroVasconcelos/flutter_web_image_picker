@@ -1,14 +1,16 @@
 name: flutter_web_image_picker
 description: A package designed for input images on web flutter.
-version: 0.0.1
+version: 0.0.2
 author: Alvaro Vasoncelos <alvaro@flutterando.com.br>
 homepage: https://github.com/AlvaroVasconcelos/flutter_web_image_picker
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.4.0 <3.0.0"
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_web_plugins:
     sdk: flutter
 
 dev_dependencies:
@@ -16,4 +18,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
+  plugin:
+    platforms:
+      web:
+        pluginClass: FlutterWebImagePicker
+        fileName: flutter_web_image_picker.dart

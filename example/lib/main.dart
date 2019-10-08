@@ -34,7 +34,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.open_in_browser),
         onPressed: () async {
-          final _image = await WebImagePicker.pickImage();
+          final _image = await FlutterWebImagePicker.getImage;
           setState(() {
             image = _image;
           });

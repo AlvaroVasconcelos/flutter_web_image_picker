@@ -1,11 +1,10 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
+import 'dart:async';
 import 'dart:html' as html;
 
 class WebImagePicker {
-
-  static Future<Image> pickImage() async {
+  Future<Map<String, dynamic>> pickImage() async {
+    print('pickImage');
+    final Map<String, dynamic> data = {};
     final html.FileUploadInputElement input = html.FileUploadInputElement();
     input..accept = 'image/*';
     input.click();
@@ -18,9 +17,10 @@ class WebImagePicker {
     // remove data:image/*;base64 preambule
     final stripped =
         encoded.replaceFirst(RegExp(r'data:image/[^;]+;base64,'), '');
-
-    final name = input.files?.first?.name;
-    final data = base64.decode(stripped);
-    return Image.memory(data, semanticLabel: name);
+    //final imageBase64 = base64.decode(stripped);
+    final imageName = input.files?.first?.name;
+    final imagePath = input.files?.first?.relativePath;
+    data.addAll({'name': imageName, 'data': stripped, 'path': imagePath});
+    return data;
   }
 }

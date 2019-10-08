@@ -1,5 +1,5 @@
 # Flutter web image picker
-[![pub package](https://img.shields.io/badge/Pub-v0.0.1-red)](https://pub.dev/packages/flutter_web_image_picker)
+[![pub package](https://img.shields.io/badge/Pub-v0.0.2-red)](https://pub.dev/packages/flutter_web_image_picker)
 
 A package designed for input images on web flutter.
 
@@ -18,7 +18,7 @@ A package designed for input images on web flutter.
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.open_in_browser),
         onPressed: () async {
-          final _image = await WebImagePicker.pickImage();
+          final _image = await FlutterWebImagePicker.pickImage();
           setState(() {
             image = _image;
           });
