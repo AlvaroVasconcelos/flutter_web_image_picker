@@ -34,7 +34,7 @@ class FlutterWebImagePicker {
     final imageData = base64.decode(data['data']);
     return Image.memory(imageData, semanticLabel: imageName);
   }
-  static Future<Uint8List> get getBase64Image async {
+  static Future<String> get getBase64Image async {
     final data =
     await _methodChannel.invokeMapMethod<String, dynamic>('pickImage');
     return data['data'];
