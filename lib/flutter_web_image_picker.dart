@@ -1,6 +1,7 @@
 library flutter_web_image_picker;
 
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -32,5 +33,11 @@ class FlutterWebImagePicker {
     final imageName = data['name'];
     final imageData = base64.decode(data['data']);
     return Image.memory(imageData, semanticLabel: imageName);
+  }
+  static Future<Uint8List> get getImageData async {
+    final data =
+    await _methodChannel.invokeMapMethod<String, dynamic>('pickImage');
+    final imageData = base64.decode(data['data']);
+    return imageData;
   }
 }
