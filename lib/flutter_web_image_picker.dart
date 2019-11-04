@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'src/web_image_picker.dart';
+import 'src/bean/web_image_info.dart';
 
 class FlutterWebImagePicker {
   static void registerWith(Registrar registrar) {
@@ -34,20 +35,14 @@ class FlutterWebImagePicker {
     final imageData = base64.decode(data['data']);
     return Image.memory(imageData, semanticLabel: imageName);
   }
-  static Future<String> get getBase64Image async {
+  static Future<WebImageInfo> get getImageInfo async {
     final data =
     await _methodChannel.invokeMapMethod<String, dynamic>('pickImage');
-    return data['data'];
-  }
-  static Future<Uint8List> get getImageData async {
-    final data =
-    await _methodChannel.invokeMapMethod<String, dynamic>('pickImage');
-    final imageData = base64.decode(data['data']);
-    return imageData;
-  }
-  static Future<Map> get getImageMap async {
-    final data =
-    await _methodChannel.invokeMapMethod<String, dynamic>('pickImage');
-    return data;
+    WebImageInfo _webImageInfo = WebImageInfo();
+    _webImageInfo.fileName = data['name'];
+    _webImageInfo.filePath = data['path'];
+    _webImageInfo.base64 = data['data'];
+    _webImageInfo.data = base64.decode(data['data']);
+    return _webImageInfo;
   }
 }
