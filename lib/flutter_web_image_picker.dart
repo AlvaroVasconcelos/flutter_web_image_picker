@@ -42,6 +42,7 @@ class FlutterWebImagePicker {
     _webImageInfo.fileName = data['name'];
     _webImageInfo.filePath = data['path'];
     _webImageInfo.base64 = data['data'];
+    _webImageInfo.base64WithScheme = data['data_scheme'];
     _webImageInfo.data = base64.decode(data['data']);
     return _webImageInfo;
   }

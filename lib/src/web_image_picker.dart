@@ -20,7 +20,12 @@ class WebImagePicker {
     //final imageBase64 = base64.decode(stripped);
     final imageName = input.files?.first?.name;
     final imagePath = input.files?.first?.relativePath;
-    data.addAll({'name': imageName, 'data': stripped, 'path': imagePath});
+    data.addAll({
+      'name': imageName,
+      'data': stripped,
+      'data_scheme': encoded,
+      'path': imagePath
+    });
     return data;
   }
 }
