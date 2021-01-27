@@ -6,6 +6,7 @@ class WebImagePicker {
     print('pickImage');
     final Map<String, dynamic> data = {};
     final html.FileUploadInputElement input = html.FileUploadInputElement();
+    html.document.body.children.add(input);
     input..accept = 'image/*';
     input.click();
     await input.onChange.first;
